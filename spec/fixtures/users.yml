@@ -1,2 +1,5 @@
 existing_user:
   login: 'Existing login'
+
+suspicious_user:
+  login: 'Suspicious login'

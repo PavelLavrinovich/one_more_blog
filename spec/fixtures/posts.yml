@@ -1,0 +1,13 @@
+bad_post:
+  title: 'Bad post'
+  description: 'It is a bad post'
+  average_mark: 2
+  user: suspicious_user
+  ip_address: suspicious_ip_address
+
+good_post:
+  title: 'Good post'
+  description: 'It is a good post'
+  average_mark: 5
+  user: suspicious_user
+  ip_address: normal_ip_address

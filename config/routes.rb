@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resource :posts, only: [:create]
-  resources :marks, only: [:create, :index]
+  resources :posts, only: [:create, :index]
+  resource :marks, only: [:create]
   resources :ip_addresses, only: [:index]
 end

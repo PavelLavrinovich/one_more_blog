@@ -15,14 +15,4 @@ class MarksController < ApplicationController
              status: '422 Unprocessable Entity'
     end
   end
-
-  def index
-    posts = Post.order('average_mark DESC').limit(params[:n]).map do |post|
-      {
-        title: post.title,
-        description: post.description
-      }
-    end
-    render json: posts.to_json, status: '200 OK'
-  end
 end

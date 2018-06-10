@@ -1,0 +1,7 @@
+existing_user_ip_address:
+  user: existing_user
+  ip_address: suspicious_ip_address
+
+suspicious_user_ip_address:
+  user: suspicious_user
+  ip_address: suspicious_ip_address

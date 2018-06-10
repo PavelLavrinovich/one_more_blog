@@ -1,0 +1,7 @@
+bad_mark:
+  value: 2
+  post: bad_post
+
+good_mark:
+  value: 5
+  post: good_post

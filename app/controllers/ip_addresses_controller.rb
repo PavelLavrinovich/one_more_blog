@@ -4,6 +4,6 @@ class IpAddressesController < ApplicationController
     json = ip_adresses.map do |ip_address|
       { ip_address.address => ip_address.users.map(&:login)}
     end
-    render json: json.to_json, status: '200 OK'
+    render json: json, status: '200 OK'
   end
 end
