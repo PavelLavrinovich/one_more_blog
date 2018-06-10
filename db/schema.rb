@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180607185850) do
+ActiveRecord::Schema.define(version: 20180610085911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ip_addresses", force: :cascade do |t|
+    t.string "address"
+    t.boolean "suspicious", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_ip_addresses_on_address"
+  end
 
   create_table "marks", force: :cascade do |t|
     t.integer "value"
@@ -26,11 +34,22 @@ ActiveRecord::Schema.define(version: 20180607185850) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "ip_address"
+    t.bigint "ip_address_id"
+    t.decimal "average_mark", default: "0.0"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ip_address_id"], name: "index_posts_on_ip_address_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "user_ip_addresses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "ip_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ip_address_id"], name: "index_user_ip_addresses_on_ip_address_id"
+    t.index ["user_id"], name: "index_user_ip_addresses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,5 +60,8 @@ ActiveRecord::Schema.define(version: 20180607185850) do
   end
 
   add_foreign_key "marks", "posts"
+  add_foreign_key "posts", "ip_addresses"
   add_foreign_key "posts", "users"
+  add_foreign_key "user_ip_addresses", "ip_addresses"
+  add_foreign_key "user_ip_addresses", "users"
 end
